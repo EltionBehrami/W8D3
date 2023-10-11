@@ -73,17 +73,17 @@ class Clock {
     };
 }
 
-let clock = new Clock();
+// let clock = new Clock();
 // clock.printTime();
 // console.log(clock.printTime())
 
 
 
-const readline = require("readline");
-const reader = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const readline = require("readline");
+// const reader = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
 
 function addNumbers (sum, numsLeft, completionCallback ) { 
@@ -94,11 +94,40 @@ function addNumbers (sum, numsLeft, completionCallback ) {
             console.log(sum)
 
 
-            if (numsLeft === 0) { 
+            if (numsLeft === 1) { 
                 completionCallback(sum)
+            } else {
+
+            addNumbers(sum, numsLeft - 1, completionCallback);
             };
-            addNumbers(sum,numsLeft, completionCallback);
+            
         })
+}}
+
+// addNumbers(0, 3, sum => console.log(`Total Sum: ${sum}`));
+
+
+Function.prototype.myBind = function(context){
+
+   return () => this.apply(context)
 }
 
-addNumbers(0, 3, sum => console.log(`Total Sum: ${sum}`));
+class Lamp {
+    constructor() {
+      this.name = "a lamp";
+    }
+  }
+  
+  const turnOn = function() {
+    console.log("Turning on " + this.name);
+  };
+  
+  const lamp = new Lamp();
+  
+  turnOn(); // should not work the way we want it to
+  
+  const boundTurnOn = turnOn.bind(lamp);
+  const myBoundTurnOn = turnOn.myBind(lamp);
+  
+  boundTurnOn(); // should say "Turning on a lamp"
+  myBoundTurnOn(); // should say "Turning on a lamp"
