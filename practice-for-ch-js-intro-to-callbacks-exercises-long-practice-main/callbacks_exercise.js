@@ -4,12 +4,12 @@ class Clock {
 
         this.seconds = date.getSeconds();
         this.minutes = date.getMinutes();
-        this.hours = date.getHours();
+        this.hours = date.getHours();   
 
         this.printTime()
 
-        setTimeout(() => {this._tick}, 1000);
-
+        // setInterval(() => {this._tick()}, 1000);
+        setInterval(this._tick.bind(this),1000);
     };
 
     printTime() { 
@@ -35,12 +35,14 @@ class Clock {
         
 
         if (this.hours < 10) {
-                hours = "0" + `${this.seconds}`
+                hours = "0" + `${this.hours}`
             }
     
         else {
-                seconds = `${this.seconds}`
+                hours = `${this.hours}`
         };
+
+        
 
         let dateTime = `${hours}:${minutes}:${seconds}`;
         console.log(dateTime);    
@@ -77,4 +79,26 @@ let clock = new Clock();
 
 
 
+const readline = require("readline");
+const reader = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
+
+function addNumbers (sum, numsLeft, completionCallback ) { 
+    if (numsLeft > 0) { 
+        reader.question('input number', (answer) => {
+            let int = parseInt(`${answer}`);
+            sum += int; 
+            console.log(sum)
+
+
+            if (numsLeft === 0) { 
+                completionCallback(sum)
+            };
+            addNumbers(sum,numsLeft, completionCallback);
+        })
+}
+
+addNumbers(0, 3, sum => console.log(`Total Sum: ${sum}`));
