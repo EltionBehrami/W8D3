@@ -6,17 +6,16 @@ class Clock {
         this.minutes = date.getMinutes();
         this.hours = date.getHours();
 
-        // let seconds = date.getSeconds();
-        // let minutes = date.getMinutes();
-        // let hours = date.getHours();
+        this.printTime()
+
+        setTimeout(() => {this._tick}, 1000);
+
     };
 
     printTime() { 
         let seconds = ``;
         let minutes = ``;
         let hours = ``;
-
-
 
         if (this.seconds < 10) {
             seconds = "0" + `${this.seconds}`
@@ -47,13 +46,35 @@ class Clock {
         console.log(dateTime);    
     };
 
-    // _tick () {
-    //     this.seconds += 1
+    _tick() {
+        this.seconds += 1;
 
-    // };
+        if (this.seconds === 60){
+            this.seconds = 0;
+            this.minutes += 1;
+        
+
+        if (this.minutes === 60){
+            this.minutes = 0;
+            this.hours += 1;
+        
+
+        if (this.hours === 25){
+            this.hours = 0;
+            this.minutes = 0;
+            this.seconds = 0;
+        };
+    }
+}
+
+        this.printTime()
+    };
 }
 
 let clock = new Clock();
 // clock.printTime();
 // console.log(clock.printTime())
+
+
+
 
