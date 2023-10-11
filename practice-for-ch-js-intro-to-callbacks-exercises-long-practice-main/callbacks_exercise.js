@@ -9,7 +9,7 @@ class Clock {
         // let seconds = date.getSeconds();
         // let minutes = date.getMinutes();
         // let hours = date.getHours();
-    }
+    };
 
     printTime() { 
         let seconds = ``;
@@ -47,11 +47,13 @@ class Clock {
         console.log(dateTime);    
     };
 
+    // _tick () {
+    //     this.seconds += 1
 
-
-
+    // };
 }
 
 let clock = new Clock();
-clock.printTime();
-console.log(clock.printTime())
+// clock.printTime();
+// console.log(clock.printTime())
+
